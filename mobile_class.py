@@ -28,6 +28,6 @@ mate10.turn_off()
 # jm tests of returns
 print()
 ret_ton = a20.turn_on()
-print('ret_ton:', ret_ton)      # funct. print?
+print('ret_ton:', ret_ton)      # funct. print?, NOP, None
 ret_toff = a20.turn_off()
-print('ret_ton:', ret_ton)      # None?
+print('ret_ton:', ret_ton)      # None
