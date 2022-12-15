@@ -21,7 +21,7 @@ pkg_cnt, pkgid, pkg_wght, pkg_cuant, wght_amnt, apl_acc = 0, '', 0, 0, 0, 0
 while Apple.counter < total:
     for p in range(Apple_max_nbr):
         wght_amnt += Apple(uniform(0.2, 0.5)).weight
-        if wght_amnt >= Apple_max_wght == Apple_max_wght or Apple.counter == total:
+        if wght_amnt >= Apple_max_wght or Apple.counter == total:
             break
     pkg_cnt += 1                                # buid a pkg
     pkgid = 'Apple Pakage #' + str(pkg_cnt)
