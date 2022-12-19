@@ -1,4 +1,5 @@
-''' time interval multiplication'''
+''' Extend the class implementation prepared in the previous lab to support
+the addition & subtraction of integers (seconds) to time interval objects'''
 
 class TimeInterval:
     def __init__(self, hs, ms, ss):
@@ -36,26 +37,32 @@ class TimeInterval:
         return hsi, msi, ssi
 
     def __mul__(self, itg):
+        if not isinstance(itg, int) or itg < 0:
+            raise ValueError('Second argument must be an integer > 0')
         hs, ms, ss = self.__conv_hms(self.tiss * itg)
         return TimeInterval(hs, ms, ss)
 
-    def __int_op(self, op, othr):
-        if op == 'add':
-            term = othr.tiss
-        elif op == 'sub':
-            term = - othr.tiss
+    def __get_term(self, ety):
+        if isinstance(ety, int):
+            termi= ety
+        elif isinstance(ety, TimeInterval):
+            termi = ety.tiss
         else:
-            raise TypeError('Unknonw operation ' + str(op))
+            raise TypeError('Second argument not valid')
+        return termi
+
+    def __add__(self, other):
+        term = self.__get_term(other)
         hs, ms, ss = self.__conv_hms(self.tiss + term)
         return TimeInterval(hs, ms, ss)
 
-    def __add__(self, other):
-        return self.__int_op('add', other)
-
     def __sub__(self, other):
-        return self.__int_op('sub', other)
+        term = self.__get_term(other)
+        hs, ms, ss = self.__conv_hms(self.tiss - term)
+        return TimeInterval(hs, ms, ss)
 
 # Lab test data:
+print('-------- Lab1:')
 fti = TimeInterval(21, 58, 50)
 print(fti)
 sti = TimeInterval(1, 45, 22)
@@ -63,8 +70,19 @@ print(sti)
 print(fti + sti)
 print(fti - sti)
 print(fti * 2)
+print('-------- Lab2:')
+tti = TimeInterval(21, 58, 50)
+print(tti + 62)
+print(tti -62)
 
-# JM -- tests:            
+# JM -- tests: 
+# print()
+# print(fti + 2)
+# print(fti + 3600)
+# print(fti - 2)
+# print(fti - 3600)
+# 
+#            
 # ti1 = TimeInterval(15, 25, 3)
 # print(ti1)
 
