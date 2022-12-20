@@ -6,6 +6,7 @@ PCPP1: Advanced Perspective of Classes and Object-Oriented Programming
 - shallow and deep operations;
 - abstract classes, method overriding, static and class methods, special methods;
     - core_syntax, special purpose methods or magic methods
+	- specialized methods: static and class methods
 - inheritance, polymorphism, subclasses, and encapsulation;
 - advanced exception handling techniques;
 - the pickle and shelve modules;
