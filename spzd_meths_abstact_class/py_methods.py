@@ -3,7 +3,7 @@
 # jm use
 _________________________________________________________________ = print
 
-# clasics and known instance methods:
+# Already known instance methods:
 class Example:
     def __init__(self, value):
         self.__internal = value
@@ -40,7 +40,7 @@ example2 = Example(99)
 print(Example.get_internal())
 _________________________________________________________________()
 
-# Class methods -  alternative constructor, allow handle an additional argument.
+# Class methods -  alternative constructor, allow handle additional arguments.
 class Car:
     def __init__(self, vin):
         print('Ordinary __init__ was called for', vin)

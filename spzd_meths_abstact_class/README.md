@@ -43,3 +43,22 @@ The time has come to compare the use of class and static methods:
 3. a class method is decorated by '@classmethod' and a static method by '@staticmethod';
 4. a class method can be used as an alternative way to create objects, and a static method
  is only a utility method.
+
+# py_OOP - Abstract Classes
+
+## Abstract Classes - abc module
+import abc - class Abstract(abc.ABC): - @abc.abstractmethod
+## Method overriding
+abstract methods must be subclass overrided
+## Multiple Inheritance
+When you plan to implement a multiple inheritance from abstract classes, remember that
+an effective subclass should override all abstract methods inherited from its super classes.
+## Summary:
+- Abstract Base Class (ABC) is a class that cannot be instantiated. Such a class is a base
+ class for concrete classes;
+- ABC can only be inherited from;
+- we are forced to override all abstract methods by delivering concrete method 
+implementations.
+
+
+
