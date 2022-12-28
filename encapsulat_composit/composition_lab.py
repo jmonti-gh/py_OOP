@@ -1,118 +1,87 @@
 ''' build a car from a limited set of components. '''
 
-# 
 class Vehicle:
     def __init__(self, VIN):
         self.VIN = VIN      # Vehicle Id Number, attrib. available
 
+    ''' works this meth here BUT use traits not know directly in this class'''
+    # def get_status(self):
+    #     print('\nVehicle: {}, details:'.format(self.instance))
+    #     print('    VIN:', self.VIN)
+    #     print('    Engine fuel:', self.engine.fuel)
+    #     print('    Engine state:', self.engine.get_state())
+    #     print('    Tires size:', self.tires.size)
+    #     print('    Tires preassure:', self.tires.get_preassure())
+
+
+
 class Car(Vehicle):
-    def __init__(self, VIN, engine, tires):
+    def __init__(self, VIN, engine, tires, instance):
         super().__init__(VIN)
         self.engine = engine
         self.tires = tires
-        print('A new car has been builded')
+        self.instance = instance
+        #print('A new car has been builded  - Name:', instance, '\tVIN:', VIN)
+        print('A new car has been builded  - Name: {:<28} {} {}'.format(instance, 'VIN', VIN))
+
+    ''' To this subclass all the traits used are presented already'''
+    def get_status(self):
+         print('\n{}: {}.  - Details:'.format(self.__class__.__name__, self.instance))
+         print('\tVIN:', self.VIN)
+         print('\tEngine fuel:', self.engine.fuel)
+         print('\tEngine state:', self.engine.get_state())
+         print('\tTires size:', self.tires.size)
+         print('\tTires preassure:', self.tires.get_preassure())
 
 class Engine:
     def __init__(self, fuel):
         self.fuel = fuel
-        self.state = 'just buldid'
+        self.__state = 'just ensambled'
     
     def start(self):
         print('Starting {} engine'.format(self.fuel))
-        self.state = 'Started'
+        self.__state = 'Started'
 
     def stop(self):
         print('Stoping {} engine'.format(self.fuel))
-        self.state = 'Stoped'
+        self.__state = 'Stoped'
 
     def get_state(self):
-        return self.state
+        return self.__state
         
 class Tires:
     def __init__(self, size):
         self.size = size
-        self.preasure = 30
+        self.__preassure = 20
     
     def pump(self, val):
-        print('Starting {} engine'.format(self.fuel))
-        self.state = 'Started'
+        print("Adding {} units to car's tires".format(val))
+        self.__preassure += val
 
-    def stop(self):
-        print('Stoping {} engine'.format(self.fuel))
-        self.state = 'Stoped'
+    def get_preassure(self):
+        return self.__preassure
 
-    def get_state(self):
-        return self.state
+city_tires = Tires(15)
+off_road_tires = Tires(18)
+electric_eng = Engine('electricity')
+pertrol_en = Engine('petrol')
 
-# The developer's responsibility is to provide methods for both engine classes, named
-# in the same way (here is thestart() method) to make it work in a polymorphic manner.
-class GasEngine:
-    def __init__(self, horse_power):
-        self.hp = horse_power
+city_car = Car('ELE123', electric_eng, city_tires, 'City car')
+all_terrain_car = Car('PTL987', pertrol_en, off_road_tires, 'All terrain vehicle')
 
-    def start(self):
-        print('Starting {}hp gas engine'.format(self.hp))
+# # Manual instrospection (first aproach) Check city_car status
+# print()
+# print('City Car Details:')
+# print('  VIN:', city_car.VIN)
+# print('  Engine fuel:', city_car.engine.fuel )
+# print('  Engine status:', city_car.engine.get_state())
 
+city_car.get_status()
+all_terrain_car.get_status()
 
-class DieselEngine:
-    def __init__(self, horse_power):
-        self.hp = horse_power
-
-    def start(self):
-        print('Starting {}hp diesel engine'.format(self.hp))
-
+# Start city car & add 8 lbs to it's tires.
 print()
-
-my_car = Car(GasEngine(4))
-my_car.engine.start()
-my_car.engine = DieselEngine(2)
-my_car.engine.start()
-
-
-class Connection:
-    def __init__(self, speed):
-        self.speed = speed
-
-    def download(self):
-        print('Downloading at {}'.format(self.speed))
-
-
-class DialUp(Connection):
-    def __init__(self):
-        super().__init__('9600bit/s')
-
-    def download(self):
-        print('Dialling the access number ... '.ljust(40), end='')
-        super().download()
-
-
-class ADSL(Connection):
-    def __init__(self):
-        super().__init__('2Mbit/s')
-
-    def download(self):
-        print('Waking up modem  ... '.ljust(40), end='')
-        super().download()
-
-
-class Ethernet(Connection):
-    def __init__(self):
-        super().__init__('10Mbit/s')
-
-    def download(self):
-        print('Constantly connected... '.ljust(40), end='')
-        super().download()
-
-print()
-
-# I started my IT adventure with an old-school dial up connection
-my_computer = Personal_Computer('1995', DialUp())
-my_computer.connection.download()
-
-# then it came year 1999 with ADSL
-my_computer.connection = ADSL()
-my_computer.connection.download()
-
-# finally I upgraded to Ethernet
-my_computer.connection = Ethernet()
-my_computer.connection.download()
+city_car.engine.start()
+city_car.tires.pump(8)
+# See actual city car status
+city_car.get_status()

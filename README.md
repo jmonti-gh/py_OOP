@@ -5,7 +5,7 @@ PCPP1: Advanced Perspective of Classes and Object-Oriented Programming
 - OOP_bases: Classes, instances, attributes, methods, class and instance data (vars);
     - Classes, Instances, Attributes, Methods - Intro (1.1...)
     - Class and Instance data (instance & class variables - attribs) (1.2...)
-- shallow and deep operations;
+- shallow and deep 'copy' operations;
 - abstract classes, method overriding, static and class methods, special methods;
     - core_syntax, special purpose methods or magic methods (2.1...)
 - inheritance, polymorphism, subclasses, and encapsulation;
@@ -15,8 +15,7 @@ PCPP1: Advanced Perspective of Classes and Object-Oriented Programming
 	- Decorators, funct. & class decorators, stacking (2.4...)
 	- specialized methods: static and class methods (2.5...)
 	- Abstract classes, @abc.abstractmethod, meth. overriding, mult. inher. (2.6...)
-	- Encapsulation
-	
+	- Encapsulation, composition, inheritance from built-in classes
 - advanced exception handling techniques;
 - the pickle and shelve modules;
 - metaclasses.
